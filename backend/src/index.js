@@ -5,9 +5,18 @@ const io = require("socket.io")(httpServer, options)
 const PORT = process.env.PORT || 4000
 
 io.on("connection", socket => {
-    socket.on('client-msg', msg => {
+    socket.on('client-msg', (msg, room) => {
         console.log("Mensaje: ", msg)
-        socket.broadcast.emit('server-msg', msg)
+        console.log("room", room)
+        if (room == "") {
+            socket.broadcast.emit('server-msg', msg)
+        } else {
+            socket.to(room).emit('server-msg', msg)
+        }
+    })
+
+    socket.on('join-room', room => {
+        socket.join(room)
     })
 
     socket.on("disconnect", () => console.log(`${socket.id} disconnected`))
