@@ -1,0 +1,8 @@
+@use '../../scss/column';
+
+$color-b: orange;
+
+.container {
+    @include column.small;
+    background-color: $color-b;
+}

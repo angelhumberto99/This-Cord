@@ -1,0 +1,6 @@
+@use '../../scss/column';
+
+.container {
+    @include column.medium;
+    background-color: gray;
+}
