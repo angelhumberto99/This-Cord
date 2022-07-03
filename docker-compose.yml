@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  backend:
+    container_name: this-cord-backend
+    restart: always
+    build: ./backend
+    ports:
+      - "4000:4000"
+  frontend:
+    container_name: this-cord-frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
