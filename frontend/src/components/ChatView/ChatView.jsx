@@ -3,6 +3,7 @@ import { io } from 'socket.io-client'
 import styles from './ChatView.module.scss'
 import MessageCard from '../MessageCard'
 const ENDPOINT = "http://localhost:4000"
+//const ENDPOINT = "http://backend"
 
 const ChatView = ({user, callback}) => {
   const [msg, setMsg] = useState("")
@@ -43,7 +44,7 @@ const ChatView = ({user, callback}) => {
   } 
 
   return (
-    <div>
+    <div className={styles.card}>
       <h2>{user}</h2>
       <h3>{id}</h3>
       <div className={styles.chatArea}>

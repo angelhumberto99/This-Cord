@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './UserList.module.scss'
 
-const UserList = () => {
+const UserList = ({server}) => {
   return (
     <div className={styles.container}>
       <p>
-        UserList
+        {server}
       </p>
     </div>
   )

@@ -1,7 +1,15 @@
+@use '../../scss/mixins';
+
 .chatArea {
+    background-color: var(--bg-color-primary);
     width: 60%;
     height: 60vh;
     margin: 2rem auto;
     border: 1px solid black;
     overflow-y: scroll;
+}
+
+.card {
+    @include mixins.large;
+    background-color: var(--bg-color-primary);
 }

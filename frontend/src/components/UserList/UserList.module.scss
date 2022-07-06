@@ -1,6 +1,7 @@
-@use '../../scss/column';
+@use '../../scss/mixins';
 
 .container {
-    @include column.medium;
-    background-color: gray;
+    @include mixins.medium;
+    background-color: var(--bg-color-primary);
+    border-radius: .5rem;
 }

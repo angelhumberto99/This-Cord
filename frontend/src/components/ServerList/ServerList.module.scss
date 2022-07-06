@@ -1,8 +1,14 @@
-@use '../../scss/column';
-
-$color-b: orange;
+@use '../../scss/mixins';
 
 .container {
-    @include column.small;
-    background-color: $color-b;
+    @include mixins.small;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.separator {
+    width: 70%;
+    margin: 0 auto;
 }
