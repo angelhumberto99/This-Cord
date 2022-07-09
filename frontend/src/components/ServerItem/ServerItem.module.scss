@@ -1,5 +1,15 @@
+.icon {
+    width: 50%;
+    height: 50%;
+}
+
+.itemOP {
+
+}
+
 .item {
-    background-color: gray;
+    background-color: #36393f;
+    color: var(--text-primary);
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -13,7 +23,7 @@
 
 .item:hover {
     border-radius: 30%;
-    background-color: rgb(168, 39, 168);
+    background-color: #5865f2;
     color: white;
 }
 

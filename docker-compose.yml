@@ -7,13 +7,27 @@ services:
     build: ./backend
     ports:
       - "4000:4000"
+    networks:
+      this_cord_network:
+        aliases: 
+          - backend_host
+
   frontend:
     container_name: this-cord-frontend
     restart: always
     build: ./frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app/frontend
+    networks:
+      this_cord_network:
+        aliases: 
+          - frontend_host
     depends_on:
       - backend
+
+networks:
+  this_cord_network:
+    name: this_cord_net
+    driver: bridge
+    ipam:
+      driver: default

@@ -1,8 +1,10 @@
 :root {
-  --text-primary: #ffffff;
-  --text-secondary: #99aab5;
-  --bg-color-dark: #23272a;
-  --bg-color-primary: #2c2f33;
+  --text-primary: #89989d;
+  --text-secondary: #edffff;
+  --bg-color-darker: #202225;
+  --bg-color-dark: #2f3136;
+  --bg-color-primary: #36393f;
+  --bg-color-light: #42464d;
 }
 
 * {
@@ -11,8 +13,12 @@
   box-sizing: border-box;
 }
 
+p, h1, h2, h3{
+  color: var(--text-primary);
+}
+html,
 body {
-  background-color: var(--bg-color-dark);
+  background-color: var(--bg-color-darker);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

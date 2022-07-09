@@ -2,6 +2,40 @@
 
 .container {
     @include mixins.medium;
-    background-color: var(--bg-color-primary);
-    border-radius: .5rem;
+    background-color: var(--bg-color-dark);
+    border-top-left-radius: .7rem;
+}
+
+.userInfo {
+    text-align: left;
+    background-color: #292b2f;
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem
+}
+
+.userInfo > p {
+    color: var(--text-secondary);
+}
+
+.img {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-color: #5865f2;
+    border-radius: 50%;
+}
+
+.copyId {
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.copyId:hover {
+    background-color: var(--bg-color-darker);
 }

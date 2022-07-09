@@ -1,14 +1,12 @@
 @mixin small {
-    min-height: 100vh;
     width: 90px;
 }
 
 @mixin medium {
-    min-height: 100vh;
-    min-width: 15ch;
+    min-width: 25ch;
 }
 
 @mixin large {
     width: 100%;
-    border-radius: .5rem;
+    height: calc(100vh - 2.1rem);
 }
