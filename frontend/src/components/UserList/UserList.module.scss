@@ -4,6 +4,7 @@
     @include mixins.medium;
     background-color: var(--bg-color-dark);
     border-top-left-radius: .7rem;
+    position: relative;
 }
 
 .userInfo {
@@ -11,11 +12,11 @@
     background-color: #292b2f;
     position: absolute;
     bottom: 0;
-    width: 25%;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: .5rem;
-    padding: .5rem
+    padding: .5rem;
 }
 
 .userInfo > p {
@@ -23,19 +24,68 @@
 }
 
 .img {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    background-color: #5865f2;
+    min-width: 40px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color-accent);
     border-radius: 50%;
 }
 
 .copyId {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
     padding: 3px;
+    max-width: 8ch;
+    border-radius: 5px;
+    position: relative;
     cursor: pointer;
+}
+
+.copyId p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.id:hover {
+    background-color: var(--bg-color-darker);
     border-radius: 5px;
 }
 
-.copyId:hover {
-    background-color: var(--bg-color-darker);
+.wrapper {
+    display: flex;
+    gap: .4rem;
+}
+
+.icon {
+    color: var(--text-primary);
+    width: 20px;
+    height: 20px;
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.iconsWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.iconWrapper:hover {
+    .icon {
+        color: var(--text-secondary);
+    }
+    background-color: var(--bg-color-primary);
 }

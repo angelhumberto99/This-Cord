@@ -1,23 +1,14 @@
 import { useState, useEffect } from 'react'
-import { io } from 'socket.io-client'
+import { useSocket } from '../../hooks'
 import styles from './ChatView.module.scss'
-import MessageCard from '../MessageCard'
-import { IoAddCircleSharp, IoGiftSharp } from 'react-icons/io5'
-import { AiOutlineFileGif } from 'react-icons/ai'
-import { TbSticker } from 'react-icons/tb'
-import { BsFillEmojiHeartEyesFill } from 'react-icons/bs'
-const ENDPOINT = "http://localhost:4000"
+import ChatArea from '../ChatArea'
+import ChatInput from '../ChatInput'
 
 const ChatView = ({user}) => {
-  const [msg, setMsg] = useState("")
   const [msgs, setMsgs] = useState([])
-  const [socket, setSocket] = useState(null)
   const [room, setRoom] = useState("")
+  const { socket } = useSocket()
   
-  useEffect(() => {
-    setSocket(io(ENDPOINT))
-  }, [])
-
   useEffect(() => {
     if (socket != null) {
       socket.on('connect', () => {
@@ -28,49 +19,31 @@ const ChatView = ({user}) => {
     }
   }, [socket])
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
+  const getDate = () => {
     const today = new Date()
-    const date = `${today.getDate()}/${(today.getMonth()+1)}/${today.getFullYear()}`
+    return `${today.getDate()}/${(today.getMonth()+1)}/${today.getFullYear()}`
+  }
+
+  const handleSubmit = msg => {
+    const date = getDate()
     socket.emit('client-msg', {
       from: user,
       msg,
       date
     }, room)
-    setMsg("")
     setMsgs(msgs => [...msgs, { from: user, msg, date }])
   }
   
-  const joinRoom = (evt) => {
-    evt.preventDefault()
-    console.log(room)
-    socket.emit('join-room', room)
-  } 
+  // const joinRoom = (evt) => {
+  //   evt.preventDefault()
+  //   console.log(room)
+  //   socket.emit('join-room', room)
+  // } 
 
   return (
     <div className={styles.card}>
-      <div className={styles.chatArea}>
-        {
-          msgs.map((e, i) => {
-            return <MessageCard key={`${e}${i}`}>
-              {e}
-            </MessageCard>
-          })
-        }
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.inputContainer}>
-          <IoAddCircleSharp className={styles.icon}/>
-          <input type="text"
-          value={msg} 
-          placeholder="Enviar mensaje"
-          onChange={msg => setMsg(msg.target.value)}/>
-          <IoGiftSharp className={styles.icon}/>
-          <AiOutlineFileGif className={styles.icon}/>
-          <TbSticker className={styles.icon}/>
-          <BsFillEmojiHeartEyesFill className={styles.icon}/>
-        </div>
-      </form>
+      <ChatArea msgs={msgs}/>
+      <ChatInput callback={handleSubmit}/>
     </div>
   )
 }

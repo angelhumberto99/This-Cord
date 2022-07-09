@@ -1,12 +1,11 @@
 @mixin small {
-    width: 90px;
+    width: 80px;
 }
 
 @mixin medium {
-    min-width: 25ch;
+    min-width: 28ch;
 }
 
 @mixin large {
     width: 100%;
-    height: calc(100vh - 2.1rem);
 }

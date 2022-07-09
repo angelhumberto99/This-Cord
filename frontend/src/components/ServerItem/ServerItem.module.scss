@@ -4,11 +4,16 @@
 }
 
 .itemOP {
+    color: #3ba55d;
+}
 
+.item:hover:nth-last-child(1), 
+.item:hover:nth-last-child(2) {
+    background-color: #3ba55d;
 }
 
 .item {
-    background-color: #36393f;
+    background-color: var(--bg-color-primary);
     color: var(--text-primary);
     width: 100%;
     aspect-ratio: 1/1;
@@ -22,9 +27,12 @@
 }
 
 .item:hover {
+    p, .icon{
+        color: var(--text-secondary);
+    }
+    
     border-radius: 30%;
-    background-color: #5865f2;
-    color: white;
+    background-color: var(--bg-color-accent);
 }
 
 .item:hover::before {
@@ -41,4 +49,9 @@
     border-bottom-right-radius: 3px;
     background-color: white;
     transition: all .3s ease;
+}
+
+.active:before {
+    height: 100%;
+    left: -10px;
 }

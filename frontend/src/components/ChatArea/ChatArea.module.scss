@@ -1,0 +1,20 @@
+.chatArea {
+    background-color: var(--bg-color-primary);
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.chatArea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatArea::-webkit-scrollbar-track {
+    background: var(--bg-color-dark);
+    border-radius: 4px; 
+}
+
+.chatArea::-webkit-scrollbar-thumb {
+    background: var(--bg-color-darker); 
+    border-radius: 4px;
+}

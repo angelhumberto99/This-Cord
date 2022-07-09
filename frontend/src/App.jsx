@@ -3,12 +3,11 @@ import ChatView from './components/ChatView'
 import ServerList from './components/ServerList'
 import UserList from './components/UserList'
 import { useState } from 'react'
-import { useEffect } from 'react'
 
 function App() {
   const [user, setUser] = useState("")
   const [submited, setSubmited] = useState(false)
-  const [server, setServer] = useState("Server")
+  const [server, setServer] = useState("discord")
 
   const handleSubmit = evt => {
     evt.preventDefault()

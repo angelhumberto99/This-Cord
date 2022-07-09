@@ -1,25 +1,24 @@
-import React from 'react'
 import styles from './ServerItem.module.scss'
 import { SiDiscord } from 'react-icons/si'
 import { MdAdd } from 'react-icons/md'
 import { IoCompassSharp } from 'react-icons/io5'
 
-const ServerItem = ({element, callback}) => {
+const ServerItem = ({element, callback, active}) => {
   const renderIcon = () => {
     switch (element) {
       case 'discord':
         return <SiDiscord className={styles.icon}/>
       case 'new':
-        return <MdAdd className={styles.icon} color="3ba55d"/>
+        return <MdAdd className={`${styles.icon} ${styles.itemOP}`}/>
       case 'compass':
-        return <IoCompassSharp className={styles.icon} color="3ba55d"/>
+        return <IoCompassSharp className={`${styles.icon} ${styles.itemOP}`}/>
       default:
         return <p>{element.slice(0,4)}</p>
     }
   }
 
   return (
-    <div className={[styles.item]} onClick={() => callback(element)}>
+    <div className={[`${styles.item} ${active && styles.active}`]} onClick={() => callback(element)}>
       { renderIcon() }
     </div>
   )

@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { io } from 'socket.io-client'
+import { useSocket } from '../../hooks'
 import styles from './UserList.module.scss'
-const ENDPOINT = "http://localhost:4000"
+import { TiMicrophone } from 'react-icons/ti'
+import { MdHeadphones } from 'react-icons/md'
+import { RiSettings3Fill } from 'react-icons/ri'
 
 const UserList = ({server, user}) => {
-  const [id, setId] = useState("")
-  const [socket, setSocket] = useState(null)
-
-  useEffect(() => {
-    setSocket(io(ENDPOINT))
-  }, [])
-
-  useEffect(() => {
-    if (socket != null) {
-      socket.on('connect', () => {
-        setId(socket.id)
-      })
-    }
-  }, [socket])
+  const { id } = useSocket()
 
   const copy = () => {
     navigator.clipboard.writeText(id)
@@ -33,9 +21,22 @@ const UserList = ({server, user}) => {
           <span>{user[0]}</span>
         </div>
         <div>
-          <p>{user}</p>
-          <div className={styles.copyId} onClick={copy}>
-            <p>#{id.slice(0,4)}...</p>
+          <div className={styles.wrapper}>
+            <div className={styles.copyId} onClick={copy}>
+              <p>{user}</p>
+              <p className={styles.id}>#{id}</p>
+            </div>
+            <div className={styles.iconsWrapper}>
+              <div className={styles.iconWrapper}>
+                <TiMicrophone className={styles.icon}/>
+              </div>
+              <div className={styles.iconWrapper}>
+                <MdHeadphones className={styles.icon}/>
+              </div>
+              <div className={styles.iconWrapper}>
+                <RiSettings3Fill className={styles.icon}/>
+              </div>
+            </div>
           </div>
         </div>
       </div>

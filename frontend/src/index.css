@@ -5,6 +5,7 @@
   --bg-color-dark: #2f3136;
   --bg-color-primary: #36393f;
   --bg-color-light: #42464d;
+  --bg-color-accent: #5865f2;
 }
 
 * {
@@ -16,7 +17,7 @@
 p, h1, h2, h3{
   color: var(--text-primary);
 }
-html,
+
 body {
   background-color: var(--bg-color-darker);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
