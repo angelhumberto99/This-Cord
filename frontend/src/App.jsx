@@ -1,8 +1,8 @@
-import './App.css'
+import { useState } from 'react'
 import ChatView from './components/ChatView'
 import ServerList from './components/ServerList'
 import UserList from './components/UserList'
-import { useState } from 'react'
+import './App.css'
 
 function App() {
   const [user, setUser] = useState("")
@@ -14,8 +14,6 @@ function App() {
     setSubmited(submited => !submited)
   }
 
-  const servers = ["Udg", "Modular"]
-
   const handleServer = (evt) => {
     setServer(evt)
   }
@@ -25,7 +23,7 @@ function App() {
       <header>This Cord</header>
       { submited ?
         <div className='columns'>
-          <ServerList servers={servers} handleServer={handleServer}/>
+          <ServerList handleServer={handleServer}/>
           <UserList server={server} user={user}/>
           <ChatView user={user}/>
         </div>

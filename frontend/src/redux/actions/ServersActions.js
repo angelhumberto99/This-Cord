@@ -1,6 +1,6 @@
-const ServerActions = {
+const ServersActions = {
     ADD: '@server/add',
     DELETE: '@server/delete'
 }
 
-export default ServerActions
+export default ServersActions

@@ -4,9 +4,9 @@ import { GrClose } from 'react-icons/gr'
 
 const Dialog = ({close, children}) => {
   return (
-    <div className={styles.container} onClick={close}>
+    <div className={styles.container} onMouseDown={close}>
         <div className={styles.card} 
-          onClick={(e) => e.stopPropagation()}>
+          onMouseDown={(e) => e.stopPropagation()}>
             <GrClose className={styles.close}
             onClick={close}/>
             {

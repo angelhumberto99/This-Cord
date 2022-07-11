@@ -16,7 +16,16 @@
     padding: .5rem 1rem;
     background-color: var(--bg-color-bright);
     width: 100%;
+    color: var(--bg-color-darker);
     font-size: 1.2rem;
+}
+
+#input::placeholder {
+    color: var(--text-primary);
+}
+
+#input:focus {
+    outline: 1px solid var(--bg-color-light);
 }
 
 #btnSubmit {

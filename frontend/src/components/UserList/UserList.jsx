@@ -22,9 +22,13 @@ const UserList = ({server, user}) => {
         </div>
         <div>
           <div className={styles.wrapper}>
-            <div className={styles.copyId} onClick={copy}>
-              <p>{user}</p>
-              <p className={styles.id}>#{id}</p>
+            <div id={styles.userWrapper}>
+              <div>
+                <p>{user}</p>
+              </div>
+              <div className={styles.copyId} onClick={copy}>
+                <p className={styles.id}>#{id}</p>
+              </div>
             </div>
             <div className={styles.iconsWrapper}>
               <div className={styles.iconWrapper}>

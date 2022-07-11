@@ -3,6 +3,7 @@ import styles from './ServerList.module.scss'
 import ServerItem from '../ServerItem'
 import Dialog from '../Dialog'
 import ServerDialog from '../ServerDialog'
+import { ServersStore } from '../../redux/stores'
 
 const ServerList = ({servers, handleServer}) => {
   const [ active, setActive ] = useState("discord")
@@ -20,7 +21,7 @@ const ServerList = ({servers, handleServer}) => {
         <ServerItem element={"discord"} active={active} callback={handleButton}/>
         <hr className={styles.separator} color='gray'/>
         {
-          servers.map((e,i) => <ServerItem 
+          ServersStore.getState().map((e,i) => <ServerItem 
             active={active}
             key={i} 
             element={e} 
