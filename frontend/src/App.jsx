@@ -14,7 +14,7 @@ function App() {
     setSubmited(submited => !submited)
   }
 
-  const servers = ["Udg", "Modular", "new", "compass"]
+  const servers = ["Udg", "Modular"]
 
   const handleServer = (evt) => {
     setServer(evt)

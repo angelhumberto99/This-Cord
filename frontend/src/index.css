@@ -6,6 +6,9 @@
   --bg-color-primary: #36393f;
   --bg-color-light: #42464d;
   --bg-color-accent: #5865f2;
+  --bg-color-bright: #e3e5e8;
+  --btn-color-inactive: #a5acf3;
+  --btn-color-active: #a5acf3;
 }
 
 * {
@@ -19,6 +22,7 @@ p, h1, h2, h3{
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--bg-color-darker);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

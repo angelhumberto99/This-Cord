@@ -17,8 +17,11 @@ const ServerItem = ({element, callback, active}) => {
     }
   }
 
+  active = active === element
+
   return (
-    <div className={[`${styles.item} ${active && styles.active}`]} onClick={() => callback(element)}>
+    <div className={[`${styles.item} ${active && styles.active}`]} 
+      onClick={() => callback(element)}>
       { renderIcon() }
     </div>
   )
