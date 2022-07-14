@@ -17,9 +17,11 @@ const ServerList = ({servers, handleServer}) => {
 
   return (
     <>
-      <div className={styles.container}>
+      <ul className={styles.container}>
         <ServerItem element={"discord"} active={active} callback={handleButton}/>
-        <hr className={styles.separator} color='gray'/>
+        <li>
+          <hr className={styles.separator} color='gray'/>
+        </li>
         {
           ServersStore.getState().map((e,i) => <ServerItem 
             active={active}
@@ -30,7 +32,7 @@ const ServerList = ({servers, handleServer}) => {
         }
         <ServerItem element={"new"} active={active} callback={handleButton}/>
         <ServerItem element={"compass"} active={active} callback={handleButton}/>
-      </div>
+      </ul>
       {
         dialog &&
         <Dialog close={() => setDialog(false)}>

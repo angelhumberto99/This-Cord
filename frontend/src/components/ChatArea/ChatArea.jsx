@@ -3,15 +3,17 @@ import styles from './ChatArea.module.scss';
 
 const ChatArea = ({msgs}) => {
   return (
-    <div className={styles.chatArea}>
-        {
-          msgs.map((e, i) => {
-            return <MessageCard key={`${e}${i}`}>
+    <ul className={styles.chatArea}>
+      {
+        msgs.map((e, i) => {
+          return (
+            <MessageCard key={`${e}${i}`}>
               {e}
             </MessageCard>
-          })
-        }
-    </div>
+          )
+        })
+      }
+    </ul>
   )
 }
 

@@ -1,0 +1,12 @@
+.userImg {
+    min-width: 40px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.userImg > span {
+    font-weight: 500;
+}

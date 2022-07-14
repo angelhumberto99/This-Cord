@@ -1,0 +1,29 @@
+.icon {
+    color: var(--text-primary);
+    width: 20px;
+    height: 20px;
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.iconsWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.iconWrapper:hover {
+    .icon {
+        color: var(--text-secondary);
+    }
+    background-color: var(--bg-color-primary);
+}

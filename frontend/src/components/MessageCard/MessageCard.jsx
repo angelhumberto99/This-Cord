@@ -1,13 +1,10 @@
 import styles from './MessageCard.module.scss'
+import UserImage from '../UserImage'
 
 const MessageCard = ({children}) => {
   return (
-    <div className={styles.messageCard}>
-      <div className={styles.img}>
-        <span>
-          {children.from[0]}
-        </span>
-      </div>
+    <li className={styles.messageCard}>
+      <UserImage styling={styles.img} user={children.from}/>
       <div>
         <span className={styles.sender}>{children.from}</span>
         <span className={styles.date}>{children.date}</span>
@@ -15,7 +12,7 @@ const MessageCard = ({children}) => {
           <span>{children.msg}</span>
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 

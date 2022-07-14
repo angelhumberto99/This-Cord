@@ -3,6 +3,7 @@ import { useSocket } from '../../hooks'
 import styles from './ChatView.module.scss'
 import ChatArea from '../ChatArea'
 import ChatInput from '../ChatInput'
+import { getDate } from '../../utils'
 
 const ChatView = ({user}) => {
   const [msgs, setMsgs] = useState([])
@@ -18,11 +19,6 @@ const ChatView = ({user}) => {
       })
     }
   }, [socket])
-
-  const getDate = () => {
-    const today = new Date()
-    return `${today.getDate()}/${(today.getMonth()+1)}/${today.getFullYear()}`
-  }
 
   const handleSubmit = msg => {
     const date = getDate()

@@ -15,22 +15,20 @@ const ChatInput = ({callback}) => {
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <div className={styles.inputContainer}>
-                    <IoAddCircleSharp className={styles.icon}/>
-                    <input type="text"
-                    name="msg"
-                    value={msg} 
-                    placeholder="Enviar mensaje"
-                    onChange={msg => setMsg(msg.target.value)}/>
-                    <IoGiftSharp className={styles.icon}/>
-                    <AiOutlineFileGif className={styles.icon}/>
-                    <TbSticker className={styles.icon}/>
-                    <BsFillEmojiHeartEyesFill className={styles.icon}/>
-                </div>
-            </form>
-        </>
+        <form onSubmit={handleSubmit}>
+            <div className={styles.inputContainer}>
+                <IoAddCircleSharp className={styles.icon}/>
+                <input type="text"
+                name="msg"
+                value={msg} 
+                placeholder="Enviar mensaje"
+                onChange={msg => setMsg(msg.target.value)}/>
+                <IoGiftSharp className={styles.icon}/>
+                <AiOutlineFileGif className={styles.icon}/>
+                <TbSticker className={styles.icon}/>
+                <BsFillEmojiHeartEyesFill className={styles.icon}/>
+            </div>
+        </form>
     )
 }
 

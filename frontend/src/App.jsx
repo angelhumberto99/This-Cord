@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ChatView from './components/ChatView'
 import ServerList from './components/ServerList'
-import UserList from './components/UserList'
+import ChannelList from './components/ChannelList'
 import './App.css'
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
       { submited ?
         <div className='columns'>
           <ServerList handleServer={handleServer}/>
-          <UserList server={server} user={user}/>
+          <ChannelList server={server} user={user}/>
           <ChatView user={user}/>
         </div>
         :
