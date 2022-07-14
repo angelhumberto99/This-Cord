@@ -9,81 +9,8 @@
     overflow: hidden;
 }
 
-.userInfo {
-    text-align: left;
-    background-color: #292b2f;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.channelContainer {
     display: flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .5rem;
-}
-
-.userInfo > p {
-    color: var(--text-secondary);
-}
-
-.img {
-    min-width: 40px;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--bg-color-accent);
-    border-radius: 50%;
-}
-
-.copyId {
-    max-width: 8ch;
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
-}
-
-.copyId p {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.id:hover {
-    background-color: var(--bg-color-darker);
-    border-radius: 5px;
-}
-
-.wrapper {
-    display: flex;
-    gap: .4rem;
-}
-
-.icon {
-    color: var(--text-primary);
-    width: 20px;
-    height: 20px;
-}
-
-.iconWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    aspect-ratio: 1/1;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.iconsWrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-
-.iconWrapper:hover {
-    .icon {
-        color: var(--text-secondary);
-    }
-    background-color: var(--bg-color-primary);
+    flex-direction: column;
+    gap: .2rem;
 }
