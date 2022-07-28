@@ -5,7 +5,7 @@ import UserImage from '../UserImage'
 import { UserContext } from '../../context'
 
 const JoinDialog = ({ close, setServers }) => {
-  const [ joinables, setJoinables ] = useState([])
+  const [ joinables, setJoinables ] = useState({})
   const { socket } = useContext(UserContext)
 
   const handleSubmit = el => {
@@ -29,7 +29,7 @@ const JoinDialog = ({ close, setServers }) => {
           { 
             joinables.length === 0
             ? <p><b>Ups :(</b><br/>parece que no hay servidores disponibles</p>
-            : joinables.map(e => {
+            : Object.keys(joinables).map(e => {
                 return (
                   <div key={e} className={styles.btnWrapper}>
                     <button 

@@ -7,9 +7,9 @@ import JoinDialog from '../JoinDialog'
 import { ServerContext, RoomContext } from '../../context'
 
 const ServerList = () => {
-  const [ active, setActive ] = useState("$<Inicio>$")
+  const [ active, setActive ] = useState("general")
   const [ dialog, setDialog ] = useState(false)
-  const [ servers, setServers ] = useState([])
+  const [ servers, setServers ] = useState(["general"])
   const { setServer } = useContext(ServerContext)
   const { setRoom } = useContext(RoomContext)
 

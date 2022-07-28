@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './ChannelList.module.scss'
 import UserInfo from '../UserInfo'
 import Channel from '../Channel'
@@ -6,10 +6,20 @@ import { ServerContext, UserContext } from '../../context'
 
 const ChannelList = () => {
   const { server } = useContext(ServerContext)
-  const channels = ["General"]
-  const { user } = useContext(UserContext)
-
+  const [channels, setChannels] = useState(["General"])
+  const { user, socket } = useContext(UserContext)
   const regex = /\$<.+>\$/
+
+  useEffect(() => {
+    if (server === "$<Inicio>$") {
+      socket.emit("get-users", setChannels)
+      socket.on("logged", users => setChannels(users))
+    } else {
+      setChannels(["general"]) 
+    }
+  }, [socket, server])
+
+
 
   return (
     <div className={styles.container}>
@@ -22,10 +32,12 @@ const ChannelList = () => {
       </h3>
       <ul className={styles.channelContainer}>
       {
-        server.match(regex)
+        server.match(regex) && server !== "$<Inicio>$"
         ? null :
         channels.map((e, i) => {
-          return <Channel active={true} key={i}>{e}</Channel>
+          if (e.name !== user){
+            return <Channel active={true} key={i}>{e}</Channel>
+          }
         })
       }
       </ul>
