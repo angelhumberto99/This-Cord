@@ -1,7 +1,14 @@
+import { useRef, useEffect } from 'react'
 import MessageCard from '../MessageCard'
 import styles from './ChatArea.module.scss';
 
-const ChatArea = ({msgs}) => {
+const ChatArea = ({ msgs }) => {
+  const scrollRef = useRef(null)
+
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({behavior: 'smooth'})
+  }, [msgs])
+
   return (
     <ul className={styles.chatArea}>
       {
@@ -13,6 +20,7 @@ const ChatArea = ({msgs}) => {
           )
         })
       }
+      <div ref={scrollRef}/>
     </ul>
   )
 }

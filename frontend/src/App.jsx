@@ -1,31 +1,45 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ChatView from './components/ChatView'
 import ServerList from './components/ServerList'
 import ChannelList from './components/ChannelList'
+import { ServerContext, UserContext, RoomContext } from './context'
+import { useSocket } from './hooks'
 import './App.css'
 
 function App() {
-  const [user, setUser] = useState("")
-  const [submited, setSubmited] = useState(false)
-  const [server, setServer] = useState("discord")
+  const [ user, setUser ] = useState("")
+  const [ room, setRoom ] = useState("global")
+  const [ submited, setSubmited ] = useState(false)
+  const [ server, setServer ] = useState("$<Inicio>$")
+  const { id, socket } = useSocket()
 
   const handleSubmit = evt => {
     evt.preventDefault()
     setSubmited(submited => !submited)
   }
 
-  const handleServer = (evt) => {
-    setServer(evt)
-  }
+  useEffect(() => {
+    if (socket != null) {
+      socket.on("connect", () => {
+        socket.emit('join-room', "global")
+      })
+    }
+  }, [socket])
 
   return (
     <div className="App">
       <header>This Cord</header>
       { submited ?
         <div className='columns'>
-          <ServerList handleServer={handleServer}/>
-          <ChannelList server={server} user={user}/>
-          <ChatView user={user}/>
+          <ServerContext.Provider value={{server, setServer}}>
+            <UserContext.Provider value={{user, id, socket}}>
+              <RoomContext.Provider value={{room, setRoom}}>
+                <ServerList/>
+                <ChannelList/>
+                <ChatView/>
+              </RoomContext.Provider>
+            </UserContext.Provider>
+          </ServerContext.Provider>
         </div>
         :
         <form onSubmit={handleSubmit}>

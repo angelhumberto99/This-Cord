@@ -1,0 +1,63 @@
+@use '../../scss/dialog';
+
+#serversList {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+#serversList > p {
+  font-size: .9rem;
+}
+
+#serversList > * {
+  flex: 1 1 30%
+}
+
+.btnWrapper {
+  width: 10ch;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.btnWrapper > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.joinableBtn {
+  z-index: 9;
+  border-radius: 50%;
+  border: none;
+}
+
+.joinableContent {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.joinableContent:hover {
+  opacity: 0.6;
+}
+
+#serversList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#serversList::-webkit-scrollbar-track {
+  background: rgb(218, 211, 211);
+  border-radius: 4px; 
+}
+
+#serversList::-webkit-scrollbar-thumb {
+  background: rgb(178, 178, 178); 
+  border-radius: 4px;
+}

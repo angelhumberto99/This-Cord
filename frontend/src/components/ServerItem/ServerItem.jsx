@@ -3,14 +3,14 @@ import { SiDiscord } from 'react-icons/si'
 import { MdAdd } from 'react-icons/md'
 import { IoCompassSharp } from 'react-icons/io5'
 
-const ServerItem = ({element, callback, active}) => {
+const ServerItem = ({ element, callback, active }) => {
   const renderIcon = () => {
     switch (element) {
-      case 'discord':
+      case '$<Inicio>$':
         return <SiDiscord className={styles.icon}/>
-      case 'new':
+      case '$<Añadir un servidor>$':
         return <MdAdd className={`${styles.icon} ${styles.itemOP}`}/>
-      case 'compass':
+      case '$<Explora servidores>$':
         return <IoCompassSharp className={`${styles.icon} ${styles.itemOP}`}/>
       default:
         return <p>{element.slice(0,4)}</p>

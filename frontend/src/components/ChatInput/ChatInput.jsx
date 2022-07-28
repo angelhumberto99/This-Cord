@@ -5,7 +5,7 @@ import { AiOutlineFileGif } from 'react-icons/ai'
 import { TbSticker } from 'react-icons/tb'
 import { BsFillEmojiHeartEyesFill } from 'react-icons/bs'
 
-const ChatInput = ({callback}) => {
+const ChatInput = ({ callback }) => {
     const [msg, setMsg] = useState("")
 
     const handleSubmit = evt => {

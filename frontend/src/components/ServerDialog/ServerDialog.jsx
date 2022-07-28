@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from './ServerDialog.module.scss'
-import { ServersStore } from '../../redux/stores'
-import { ServersActions } from '../../redux/actions'
+import { addServer } from '../../services'
+import { UserContext } from '../../context'
 
-const ServerDialog = ({close}) => {
-  const [server, setServer] = useState("")
+const ServerDialog = ({ close, setServers }) => {
+  const [ server, setServer ] = useState("")
+  const { socket } = useContext(UserContext)
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    ServersStore.dispatch({type: ServersActions.ADD, payload: server})
+    socket.emit('join-room', server)
+    setServers(prev => prev.concat(server))
+    addServer({ server })
     close()
   }
 

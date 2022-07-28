@@ -1,7 +1,7 @@
 import styles from './MessageCard.module.scss'
 import UserImage from '../UserImage'
 
-const MessageCard = ({children}) => {
+const MessageCard = ({ children }) => {
   return (
     <li className={styles.messageCard}>
       <UserImage styling={styles.img} user={children.from}/>

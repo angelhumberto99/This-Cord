@@ -1,43 +1,56 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from './ServerList.module.scss'
 import ServerItem from '../ServerItem'
 import Dialog from '../Dialog'
 import ServerDialog from '../ServerDialog'
-import { ServersStore } from '../../redux/stores'
+import JoinDialog from '../JoinDialog'
+import { ServerContext, RoomContext } from '../../context'
 
-const ServerList = ({servers, handleServer}) => {
-  const [ active, setActive ] = useState("discord")
-  const [dialog, setDialog] = useState(false)
+const ServerList = () => {
+  const [ active, setActive ] = useState("$<Inicio>$")
+  const [ dialog, setDialog ] = useState(false)
+  const [ servers, setServers ] = useState([])
+  const { setServer } = useContext(ServerContext)
+  const { setRoom } = useContext(RoomContext)
 
   const handleButton = (evt) => {
-    if (evt === 'new') setDialog(true)
-    handleServer(evt)
+    if (evt === '$<Añadir un servidor>$' || evt === '$<Explora servidores>$')
+      setDialog(true)
+    setServer(evt)
+    if (!evt.match(/\$<.+>\$/)) {
+      setRoom(evt)
+    }
     setActive(evt)
   }
 
   return (
     <>
       <ul className={styles.container}>
-        <ServerItem element={"discord"} active={active} callback={handleButton}/>
+        <ServerItem element={"$<Inicio>$"} active={active} callback={handleButton}/>
         <li>
           <hr className={styles.separator} color='gray'/>
         </li>
         {
-          ServersStore.getState().map((e,i) => <ServerItem 
+          servers.map((e,i) => <ServerItem 
             active={active}
             key={i} 
             element={e} 
             callback={handleButton}
           />)
         }
-        <ServerItem element={"new"} active={active} callback={handleButton}/>
-        <ServerItem element={"compass"} active={active} callback={handleButton}/>
+        <ServerItem element={"$<Añadir un servidor>$"} active={active} callback={handleButton}/>
+        <ServerItem element={"$<Explora servidores>$"} active={active} callback={handleButton}/>
       </ul>
       {
-        dialog &&
-        <Dialog close={() => setDialog(false)}>
-          <ServerDialog close={() => setDialog(false)}/>
+        dialog === true
+        ? <Dialog close={() => setDialog(false)}>
+          {
+            active === '$<Añadir un servidor>$'
+            ? <ServerDialog close={() => setDialog(false)} setServers={setServers}/>
+            : <JoinDialog close={() => setDialog(false)} setServers={setServers}/>
+          }
         </Dialog>
+        : null
       }
     </>
   )
