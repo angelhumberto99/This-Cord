@@ -3,14 +3,21 @@ import { BiHash } from 'react-icons/bi'
 import { useContext } from 'react'
 import { UserContext, RoomContext } from '../../context'
 
-const Channel = ({ children, active }) => {
+const Channel = ({ children, active, setActive }) => {
   const { socket } = useContext(UserContext)
-  const { setRoom } = useContext(RoomContext)
+  const { room, setRoom } = useContext(RoomContext)
 
   const handleClick = () => {
     if (children?.id) {
       socket.emit('join-room', children.id)
       setRoom(children.id)
+      setActive(children.name)
+    } else {
+      // esto servirá para hacer subsalas
+      // let subRoom = `${room}/${children}`
+      // socket.emit('join-room', subRoom)
+      // setRoom(subRoom)
+      setActive(children)
     }
   }
 

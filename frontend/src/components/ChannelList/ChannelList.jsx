@@ -6,21 +6,26 @@ import { ServerContext, UserContext } from '../../context'
 
 const ChannelList = () => {
   const { server } = useContext(ServerContext)
-  const [channels, setChannels] = useState(["General"])
+  const [channels, setChannels] = useState([])
+  const [ active, setActive ] = useState("general")
   const { user, socket } = useContext(UserContext)
   const regex = /\$<.+>\$/
+  
+  useEffect(() => {
+    let filterChannels = channels.filter(e => e.name !== user)
+    setActive(filterChannels[0]?.name ?? "general")
+  }, [channels])
 
   useEffect(() => {
     if (server === "$<Inicio>$") {
       socket.emit("get-users", setChannels)
       socket.on("logged", users => setChannels(users))
     } else {
-      setChannels(["general"]) 
+      setChannels(["general"])
     }
   }, [socket, server])
 
-
-
+  
   return (
     <div className={styles.container}>
       <h3>
@@ -36,7 +41,8 @@ const ChannelList = () => {
         ? null :
         channels.map((e, i) => {
           if (e.name !== user){
-            return <Channel active={true} key={i}>{e}</Channel>
+            const isActive = active === (e.name ?? e)
+            return <Channel active={isActive} setActive={setActive} key={i}>{e}</Channel>
           }
         })
       }

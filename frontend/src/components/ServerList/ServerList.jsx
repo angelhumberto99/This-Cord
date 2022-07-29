@@ -4,7 +4,7 @@ import ServerItem from '../ServerItem'
 import Dialog from '../Dialog'
 import ServerDialog from '../ServerDialog'
 import JoinDialog from '../JoinDialog'
-import { ServerContext, RoomContext } from '../../context'
+import { ServerContext, RoomContext, UserContext } from '../../context'
 
 const ServerList = () => {
   const [ active, setActive ] = useState("general")
@@ -12,12 +12,14 @@ const ServerList = () => {
   const [ servers, setServers ] = useState(["general"])
   const { setServer } = useContext(ServerContext)
   const { setRoom } = useContext(RoomContext)
+  const { socket } = useContext(UserContext)
 
   const handleButton = (evt) => {
     if (evt === '$<Añadir un servidor>$' || evt === '$<Explora servidores>$')
       setDialog(true)
     setServer(evt)
     if (!evt.match(/\$<.+>\$/)) {
+      socket.emit('join-room', evt)
       setRoom(evt)
     }
     setActive(evt)

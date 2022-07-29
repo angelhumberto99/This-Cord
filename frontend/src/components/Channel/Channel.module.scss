@@ -18,7 +18,7 @@
     transition: all 0.3s ease;
 }
 
-.channelBtn:hover {
+:not(.active).channelBtn:hover {
     background-color: var(--bg-channel-hover);
 }
 
@@ -32,4 +32,5 @@
 
 .active {
     background-color: var(--bg-color-light);
+    color: var(--text-secondary);
 }

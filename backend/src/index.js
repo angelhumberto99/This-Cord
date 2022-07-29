@@ -52,24 +52,31 @@ io.on("connection", socket => {
 
     socket.on('client-msg', (msg, room) => {
         if (servers[room] === undefined) {
-            let user = getUser(socket.id, room)
-            user.dms[room].msgs.push(msg)
+            let sender = getUser(socket.id, room)
+            let receiver = getUser(room, socket.id)
+
+            sender.dms[room].msgs.push(msg)
+            receiver.dms[socket.id].msgs.push(msg)
+
             users = users.map(u => {
-                if (u.id === user.id)
-                    u.dms = user.dms
+                if (u.id === sender.id) {
+                    u.dms = sender.dms
+                } else if (u.id === receiver.id) {
+                    u.dms = receiver.dms
+                }
                 return u
             })
-            io.to(room).emit('server-msg', user.dms[room].msgs)
         } else {
             servers[room].msgs.push(msg)
-            io.to(room).emit('server-msg', servers[room].msgs)
         }
+        io.emit('new-message')
     })
 
-    socket.on("get-msgs", (room, cb) => {
+    socket.on("get-msgs", (room, id, cb) => {
         if (servers[room] === undefined) {
-            let user = getUser(socket.id, room)
-            cb(user.dms[room].msgs)
+            var user = getUser(socket.id, room)
+            if (id === socket.id || id === room)
+                cb(user.dms[room].msgs)
         } else {
             cb(servers[room].msgs)
         }
@@ -79,14 +86,12 @@ io.on("connection", socket => {
 
     socket.on('join-room', room => {
         socket.join(room)
+        io.emit('new-message')
     })
 
     socket.on("disconnect", () => {
-        console.log("before: ", users)
-        console.log("socket: ",socket.id)
         users = users.filter(e => e.id !== socket.id)
         socket.broadcast.emit("logged", users)
-        console.log("after: ", users)
     })
 })
 

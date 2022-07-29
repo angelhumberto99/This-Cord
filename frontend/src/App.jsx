@@ -28,8 +28,9 @@ function App() {
         socket.emit('join-room', room)
       })
 
-      socket.emit('get-msgs', room, setMsgs)
-      socket.on('server-msg', args => setMsgs(args))
+      socket.on('new-message', () => {
+        socket.emit('get-msgs', room, id, (arg) => setMsgs(arg))
+      })
     }
   }, [socket, room])
 
