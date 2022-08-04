@@ -1,15 +1,14 @@
 import { useContext } from 'react'
 import { BiHash } from 'react-icons/bi'
-import { RoomContext, UserContext, ServerContext } from '../../context'
-import styles from './Welcome.module.scss'
+import { RoomContext, ServerContext } from '@/context'
+import { useSender } from '@/hooks'
 import UserImage from '../UserImage'
-import { useSender } from '../../hooks'
+import styles from './Welcome.module.scss'
 
 export default function Welcome() {
   const { room } = useContext(RoomContext)
-  const { socket } = useContext(UserContext)
   const { server } = useContext(ServerContext)
-  const { isUser, name } = useSender(socket, server, room)
+  const { isUser, name } = useSender(server, room)
 
   return (
     <div className={styles.container}>

@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react'
-import styles from './ServerList.module.scss'
+import { ServerContext, RoomContext } from '@/context'
+import { useSocket } from '@/hooks'
 import ServerItem from '../ServerItem'
 import Dialog from '../Dialog'
 import ServerDialog from '../ServerDialog'
 import JoinDialog from '../JoinDialog'
-import { ServerContext, RoomContext, UserContext } from '../../context'
+import styles from './ServerList.module.scss'
 
 const ServerList = () => {
   const [ active, setActive ] = useState("general")
@@ -12,7 +13,7 @@ const ServerList = () => {
   const [ servers, setServers ] = useState(["general"])
   const { setServer } = useContext(ServerContext)
   const { setRoom } = useContext(RoomContext)
-  const { socket } = useContext(UserContext)
+  const { socket } = useSocket()
 
   const handleButton = (evt) => {
     if (evt === '$<Añadir un servidor>$' || evt === '$<Explora servidores>$')

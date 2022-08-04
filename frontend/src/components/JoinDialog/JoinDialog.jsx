@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react'
-import getServers from '../../services/getServers'
-import styles from './JoinDialog.module.scss'
+import { useState, useEffect } from 'react'
+import { getServers } from '@/services'
+import { useSocket } from '@/hooks'
 import UserImage from '../UserImage'
-import { UserContext } from '../../context'
+import styles from './JoinDialog.module.scss'
 
 const JoinDialog = ({ close, setServers }) => {
   const [ joinables, setJoinables ] = useState({})
-  const { socket } = useContext(UserContext)
+  const { socket } = useSocket()
 
   const handleSubmit = el => {
     socket.emit('join-room', el)

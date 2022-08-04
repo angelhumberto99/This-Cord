@@ -1,24 +1,10 @@
-import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
+
 const ENDPOINT = "http://localhost:4000"
+const socket = io(ENDPOINT)
 
 const useSocket = () => {
-    const [socket, setSocket] = useState(null)
-    const [id, setId] = useState("")
-
-    useEffect(() => {
-        setSocket(io(ENDPOINT))
-    }, [])
-
-    useEffect(() => {
-        if (socket != null) {
-          socket.on('connect', () => {
-            setId(socket.id)
-          })
-        }
-      }, [socket])
-
-    return { id, socket }
+    return { id: socket.id, socket }
 }
 
 export default useSocket

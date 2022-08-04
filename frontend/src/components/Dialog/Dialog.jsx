@@ -1,6 +1,5 @@
-import React from 'react'
-import styles from './Dialog.module.scss'
 import { GrClose } from 'react-icons/gr'
+import styles from './Dialog.module.scss'
 
 const Dialog = ({ close, children }) => {
   return (

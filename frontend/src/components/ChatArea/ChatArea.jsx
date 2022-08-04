@@ -1,7 +1,7 @@
-import { useRef, useEffect, useContext } from 'react'
+import { useRef, useEffect } from 'react'
 import MessageCard from '../MessageCard'
-import styles from './ChatArea.module.scss';
 import Welcome from '../Welcome';
+import styles from './ChatArea.module.scss';
 
 const ChatArea = ({ msgs }) => {
   const scrollRef = useRef(null)
@@ -16,11 +16,9 @@ const ChatArea = ({ msgs }) => {
       {
         msgs.map((e, i) => {
           return (
-            <>
               <MessageCard key={`${e}${i}`}>
                 {e}
               </MessageCard>
-            </>
           )
         })
       }

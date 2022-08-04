@@ -1,10 +1,11 @@
-import styles from './Channel.module.scss'
-import { BiHash } from 'react-icons/bi'
 import { useContext } from 'react'
-import { UserContext, RoomContext } from '../../context'
+import { BiHash } from 'react-icons/bi'
+import { RoomContext } from '@/context'
+import { useSocket } from '@/hooks'
+import styles from './Channel.module.scss'
 
 const Channel = ({ children, active, setActive }) => {
-  const { socket } = useContext(UserContext)
+  const { socket } = useSocket()
   const { room, setRoom } = useContext(RoomContext)
 
   const handleClick = () => {

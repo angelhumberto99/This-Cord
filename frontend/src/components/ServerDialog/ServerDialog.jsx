@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
+import { addServer } from '@/services'
+import { useSocket } from '@/hooks'
 import styles from './ServerDialog.module.scss'
-import { addServer } from '../../services'
-import { UserContext } from '../../context'
 
 const ServerDialog = ({ close, setServers }) => {
   const [ server, setServer ] = useState("")
-  const { socket } = useContext(UserContext)
+  const { socket } = useSocket()
 
   const handleSubmit = evt => {
     evt.preventDefault()

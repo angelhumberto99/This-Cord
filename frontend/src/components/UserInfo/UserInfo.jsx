@@ -1,14 +1,13 @@
-import { useContext } from 'react'
-import styles from './UserInfo.module.scss'
+import { useSocket } from '@/hooks'
 import VoiceControlls from '../VoiceControlls'
 import UserImage from '../UserImage'
-import { UserContext } from '../../context'
+import styles from './UserInfo.module.scss'
 
 const UserInfo = ({user}) => {
-    const { id } = useContext(UserContext)
+    const { id } = useSocket()
     
     const copy = () => {
-        navigator.clipboard.writeText(id)
+      navigator.clipboard.writeText(id)
     }
 
     return (

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import useSocket from './useSocket'
 
-const useSender = (socket, server, room) => {
+const useSender = (server, room) => {
   const [ name, setName ] = useState("")
   const [ isUser, setIsUser ] = useState(false)
+  const { socket } = useSocket()
 
   useEffect(() => {
     if (server === "$<Inicio>$") {

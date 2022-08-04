@@ -1,18 +1,17 @@
 import { useState, useContext } from 'react'
-import styles from './ChatInput.module.scss'
 import { IoAddCircleSharp, IoGiftSharp } from 'react-icons/io5'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import { TbSticker } from 'react-icons/tb'
 import { BsFillEmojiHeartEyesFill } from 'react-icons/bs'
-import { RoomContext, ServerContext, UserContext } from '../../context'
-import { useSender } from '../../hooks'
+import { RoomContext, ServerContext } from '@/context'
+import { useSender } from '@/hooks'
+import styles from './ChatInput.module.scss'
 
 const ChatInput = ({ callback }) => {
     const [msg, setMsg] = useState("")
     const { room } = useContext(RoomContext)
-    const { socket } = useContext(UserContext)
     const { server } = useContext(ServerContext)
-    const { isUser, name } = useSender(socket, server, room)
+    const { isUser, name } = useSender(server, room)
 
     const handleSubmit = evt => {
         evt.preventDefault();

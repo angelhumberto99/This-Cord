@@ -1,61 +1,29 @@
-import { useState, useEffect } from 'react'
-import ChatView from './components/ChatView'
-import ServerList from './components/ServerList'
-import ChannelList from './components/ChannelList'
-import { ServerContext, UserContext, RoomContext } from './context'
-import { useSocket } from './hooks'
+import { useState } from 'react'
+import { UserContext } from './context'
+import { Login, Home } from './pages'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 
 function App() {
   const [ user, setUser ] = useState("")
-  const [ msgs, setMsgs ] = useState([])
-  const [ room, setRoom ] = useState("general")
-  const [ submited, setSubmited ] = useState(false)
-  const [ server, setServer ] = useState("general")
-  const { id, socket } = useSocket()
-
-  const handleSubmit = evt => {
-    evt.preventDefault()
-    setSubmited(submited => !submited)
-  }
-  useEffect(() => {
-    if (submited) socket.emit('sign-up', user)
-  }, [submited, socket])
-
-  useEffect(() => {
-    if (socket != null) {
-      socket.on('connect', () => {
-        socket.emit('join-room', room)
-      })
-
-      socket.on('new-message', () => {
-        socket.emit('get-msgs', room, id, (arg) => setMsgs(arg))
-      })
-    }
-  }, [socket, room])
 
   return (
     <div className="App">
       <header>This Cord</header>
-      { submited ?
-        <div className='columns'>
-          <ServerContext.Provider value={{server, setServer}}>
-            <UserContext.Provider value={{user, id, socket}}>
-              <RoomContext.Provider value={{room, setRoom, msgs}}>
-                <ServerList/>
-                <ChannelList/>
-                <ChatView/>
-              </RoomContext.Provider>
-            </UserContext.Provider>
-          </ServerContext.Provider>
-        </div>
-        :
-        <form onSubmit={handleSubmit}>
-          <label>Usuario </label>
-          <input type="text" required 
-          onChange={user => setUser(user.target.value)}/>
-        </form>
-      }
+      <UserContext.Provider value={{user, setUser}}>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Login/>}/>
+            <Route path='/home' 
+              element={ user === "" 
+                ? <Navigate replace to="/"/>
+                : <Home/>
+              }
+            />
+            <Route path='*' element={<Navigate replace to="/"/>}/>
+          </Routes>  
+        </BrowserRouter>
+      </UserContext.Provider>
     </div>
   )
 }

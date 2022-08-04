@@ -1,12 +1,14 @@
 import { useContext } from 'react'
-import styles from './ChatView.module.scss'
+import { getDate } from '@/utils'
+import { UserContext, RoomContext } from '@/context'
+import { useSocket } from '@/hooks'
 import ChatArea from '../ChatArea'
 import ChatInput from '../ChatInput'
-import { getDate } from '../../utils'
-import { UserContext, RoomContext } from '../../context'
+import styles from './ChatView.module.scss'
 
 const ChatView = () => {
-  const { user, socket } = useContext(UserContext)
+  const { user } = useContext(UserContext)
+  const { socket } = useSocket()
   const { room, msgs } = useContext(RoomContext)
 
   const handleSubmit = msg => {

@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
-import styles from './ChannelList.module.scss'
+import { ServerContext, UserContext } from '@/context'
+import { useSocket } from '@/hooks'
 import UserInfo from '../UserInfo'
 import Channel from '../Channel'
-import { ServerContext, UserContext } from '../../context'
+import styles from './ChannelList.module.scss'
 
 const ChannelList = () => {
   const { server } = useContext(ServerContext)
   const [channels, setChannels] = useState([])
   const [ active, setActive ] = useState("general")
-  const { user, socket } = useContext(UserContext)
+  const { user } = useContext(UserContext)
+  const { socket } = useSocket()
   const regex = /\$<.+>\$/
   
   useEffect(() => {

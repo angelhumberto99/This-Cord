@@ -1,6 +1,6 @@
-import styles from './UserImage.module.scss'
+import { capitalize, getTextColor } from '@/utils'
 import stc from 'string-to-color'
-import { capitalize, getTextColor } from '../../utils'
+import styles from './UserImage.module.scss'
 
 const UserImage = ({ user, styling }) => {
   const color = stc(user[0].toUpperCase())

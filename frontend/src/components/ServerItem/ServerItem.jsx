@@ -1,7 +1,7 @@
-import styles from './ServerItem.module.scss'
 import { SiDiscord } from 'react-icons/si'
 import { MdAdd } from 'react-icons/md'
 import { IoCompassSharp } from 'react-icons/io5'
+import styles from './ServerItem.module.scss'
 
 const ServerItem = ({ element, callback, active }) => {
   const renderIcon = () => {

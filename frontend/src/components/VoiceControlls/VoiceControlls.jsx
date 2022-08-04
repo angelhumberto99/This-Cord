@@ -1,8 +1,7 @@
-import React from 'react'
-import styles from './VoiceControlls.module.scss'
 import { TiMicrophone } from 'react-icons/ti'
 import { MdHeadphones } from 'react-icons/md'
 import { RiSettings3Fill } from 'react-icons/ri'
+import styles from './VoiceControlls.module.scss'
 
 const VoiceControlls = () => {
   return (

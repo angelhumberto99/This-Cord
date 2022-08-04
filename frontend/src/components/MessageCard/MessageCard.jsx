@@ -1,5 +1,5 @@
-import styles from './MessageCard.module.scss'
 import UserImage from '../UserImage'
+import styles from './MessageCard.module.scss'
 
 const MessageCard = ({ children }) => {
   return (
