@@ -9,7 +9,6 @@ function App() {
 
   return (
     <div className="App">
-      <header>This Cord</header>
       <UserContext.Provider value={{user, setUser}}>
         <BrowserRouter>
           <Routes>
