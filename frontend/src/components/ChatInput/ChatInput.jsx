@@ -25,7 +25,9 @@ const ChatInput = ({ callback }) => {
         <form onSubmit={handleSubmit}>
             <div className={styles.inputContainer}>
                 <IoAddCircleSharp className={styles.icon}/>
-                <input type="text"
+                <input 
+                autoComplete="off"
+                type="text"
                 name="msg"
                 value={msg} 
                 placeholder={placeholder}

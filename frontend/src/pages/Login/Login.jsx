@@ -31,7 +31,7 @@ const Login = () => {
         <p>¡Estamos emocionados de tenerte de vuelta!</p>
         <form className={styles.formCard} onSubmit={handleSubmit}>
           <label>Usuario </label>
-          <input type="text" required id={styles.userInput}
+          <input autoComplete="off" type="text" required id={styles.userInput}
           onChange={user => setUser(user.target.value)}/>
           <button id={styles.btnSubmit} disabled={user===''}>
             Iniciar sesión
